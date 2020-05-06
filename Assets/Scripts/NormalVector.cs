@@ -17,7 +17,7 @@ public class NormalVector : MonoBehaviour
     void Start()
     {
         a = this.gameObject.GetComponent<Collider>().bounds.center;
-        b = new Vector3(, Mathf.Sin(this.gameObject.GetComponent<Transform>().rotation.x), Mathf.Cos(this.gameObject.GetComponent<Transform>().rotation.x));
+        //b = new Vector3(, Mathf.Sin(this.gameObject.GetComponent<Transform>().rotation.x), Mathf.Cos(this.gameObject.GetComponent<Transform>().rotation.x));
 
         side1 = b - a;
         side2 = c - a;
@@ -25,10 +25,10 @@ public class NormalVector : MonoBehaviour
         normal = Vector3.Cross(side1, side2);
         normal /= normal.magnitude;
 
-        Collision test = gameObject.GetComponent<Collider>().
+        //Collision test = gameObject.GetComponent<Collider>().
 
-        col = GetComponent<Collision>();
-        Debug.Log(col.contacts[0]);
+        //col = GetComponent<Collision>();
+        //Debug.Log(col.contacts[0]);
 
     }
 
