@@ -4,24 +4,41 @@ using UnityEngine;
 
 public class LocalVector : MonoBehaviour
 {
-    public Matrix4x4 matrix4X4;
-    private Transform m_tr;
+    public Vector3 eulerAngles;
 
-    public Vector3 localV;
+    [SerializeField]
+    private MeshFilter mf;
+    [SerializeField]
+    private Vector3[] originVector;
+    [SerializeField]
+    private Vector3[] newVector;
 
-    // Start is called before the first frame update
+    private Transform m_Tr;
     void Start()
     {
-        m_tr = GetComponent<Transform>();
+        mf = GetComponent<MeshFilter>();
+        originVector = mf.mesh.vertices;
+        newVector = new Vector3[originVector.Length];
+        m_Tr = GetComponent<Transform>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        localV = m_tr.position;
-        Debug.Log(m_tr.position);
+        eulerAngles = m_Tr.rotation.eulerAngles;
+        Quaternion rotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, eulerAngles.z);
+        Matrix4x4 m = Matrix4x4.TRS(Vector3.zero, rotation, Vector3.one);
 
-        //Debug.Log(m_tr.eulerAngles.y);
-        Debug.Log(Mathf.Cos(Mathf.Deg2Rad * m_tr.eulerAngles.y)*2);
+        int i = 0;
+        while (i < originVector.Length)
+        {
+            newVector[i] = m.MultiplyPoint3x4(originVector[i]);
+            i++;
+        }
+
     }
+
+
+
 }
