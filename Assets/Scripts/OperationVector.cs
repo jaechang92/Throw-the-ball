@@ -45,7 +45,7 @@ public class OperationVector : MonoBehaviour
         }
         NormalVector();
         
-        Debug.Log(CheckSpherePlane(this.gameObject, ground));
+        //Debug.Log(CheckSpherePlane(this.gameObject, ground));
 
 
 
@@ -70,8 +70,8 @@ public class OperationVector : MonoBehaviour
     public Vector3 NormalVector()
     {
         a = newVector[0];
-        b = newVector[1];
-        c = newVector[2];
+        b = newVector[originVector.Length/2-1];
+        c = newVector[originVector.Length-1];
 
 
         side1 = b - a;
