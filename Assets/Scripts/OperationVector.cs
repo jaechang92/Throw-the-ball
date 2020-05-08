@@ -24,10 +24,10 @@ public class OperationVector : MonoBehaviour
         newVector = new Vector3[originVector.Length];
         m_Tr = GetComponent<Transform>();
 
-        if (this.gameObject.GetComponent<Collider>() != null)
-        {
-            PhysicsManager.instance.AddList(this.gameObject);
-        }
+        //if (this.gameObject.GetComponent<Collider>() != null)
+        //{
+        //    PhysicsManager.instance.AddList(this.gameObject);
+        //}
 
     }
 
@@ -78,7 +78,7 @@ public class OperationVector : MonoBehaviour
         side2 = c - a;
 
         normalVector3 = Vector3.Cross(side1, side2);
-        Debug.Log(normalVector3);
+        //Debug.Log(normalVector3);
         normalVector3 /= normalVector3.magnitude;
         
         return normalVector3;

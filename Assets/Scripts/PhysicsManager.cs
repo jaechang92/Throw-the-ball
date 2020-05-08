@@ -20,6 +20,9 @@ public class PhysicsManager : MonoBehaviour
     public List<GameObject> objectPool;
     public List<Transform> trPool;
 
+
+    public GameObject ball;
+    public GameObject ground;
     
     void Start()
     {
@@ -45,13 +48,26 @@ public class PhysicsManager : MonoBehaviour
         trPool.Remove(obj.transform);
     }
 
+    public Vector3 gravity = new Vector3(0, -9.8f, 0);
+    private Vector3 downV = Vector3.down;
+    public float nowGravity = 0.0f;
+    private void FixedUpdate()
+    {
+
+    }
 
     public bool SphereAndPlaneIntersect(GameObject sphere, GameObject plane)
     {
 
-
+        if (sphere.transform.position.y - plane.transform.position.y <= sphere.GetComponent<SphereCollider>().radius)
+        {
+            Debug.Log("여기도도도도도도도");
+            Debug.Log(sphere.transform.position.y - plane.transform.position.y);
+            return true;
+        }
 
         return false;
     }
 
+    
 }
