@@ -59,12 +59,12 @@ public class PhysicsManager : MonoBehaviour
     public bool SphereAndPlaneIntersect(GameObject sphere, GameObject plane)
     {
 
-        if (sphere.transform.position.y - plane.transform.position.y <= sphere.GetComponent<SphereCollider>().radius)
-        {
-            Debug.Log("여기도도도도도도도");
-            Debug.Log(sphere.transform.position.y - plane.transform.position.y);
-            return true;
-        }
+        //if (sphere.transform.position.y - plane.transform.position.y <= sphere.GetComponent<SphereCollider>().radius)
+        //{
+        //    Debug.Log("여기도도도도도도도");
+        //    Debug.Log(sphere.transform.position.y - plane.transform.position.y);
+        //    return true;
+        //}
 
         return false;
     }

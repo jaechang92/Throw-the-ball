@@ -676,6 +676,8 @@ MonoBehaviour:
   Drag: 0
   AngularDrag: 0
   UseGravity: 0
+  angularVelocity: {x: 0, y: 0, z: 0}
+  maxAngularVelocity: 0
   m_Tr: {fileID: 1346852650}
 --- !u!65 &1346852647
 BoxCollider:
@@ -775,6 +777,7 @@ GameObject:
   - component: {fileID: 1678709096}
   - component: {fileID: 1678709095}
   - component: {fileID: 1678709094}
+  - component: {fileID: 1678709098}
   - component: {fileID: 1678709093}
   - component: {fileID: 1678709092}
   m_Layer: 0
@@ -791,12 +794,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678709091}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d21669637d195c240b1b79b5c559762a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 10
 --- !u!114 &1678709093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -812,7 +815,9 @@ MonoBehaviour:
   m_mass: 1
   Drag: 0
   AngularDrag: 0
-  UseGravity: 1
+  UseGravity: 0
+  angularVelocity: {x: 0, y: 0, z: 0}
+  maxAngularVelocity: 0
   m_Tr: {fileID: 1346852650}
 --- !u!135 &1678709094
 SphereCollider:
@@ -880,13 +885,41 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678709091}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.54, y: 5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 0.07, y: 0.07, z: 0.07}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1678709098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678709091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26174bb62b8114a43939a0d595a44181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Tr: {fileID: 0}
+  m_StartSpeed: 10
+  RPM: 100
+  m_ForceOfStartRotation: 0
+  targetTr: {x: 0, y: 0, z: 1}
+  forwardRotation: 0
+  spinAngle: {x: 1, y: 0, z: 0}
+  constNum: 5000
+  foreceDirection: {x: 0, y: 0, z: 0}
+  count: 0
+  angleV: {x: 0, y: 0, z: 0}
+  isStart: 0
+  originPos: {x: 0, y: 0, z: 0}
+  originRot: {x: 0, y: 0, z: 0, w: 0}
+  prefab: {fileID: 8735979590952555469, guid: dd1b4db71d85bf04984f49794f98c9f1, type: 3}
+  objPool: []
 --- !u!1 &1751678955
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ public class MoveController : MonoBehaviour
     }
 
     public float speed = 1;
+
     // Update is called once per frame
     void Update()
     {

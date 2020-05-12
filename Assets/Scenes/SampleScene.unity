@@ -520,6 +520,55 @@ Transform:
   m_Father: {fileID: 1637577399}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &797582198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 797582200}
+  - component: {fileID: 797582199}
+  m_Layer: 0
+  m_Name: PhysicsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &797582199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797582198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d95499692d98844aa978167d5e87208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPool: []
+  trPool: []
+  ball: {fileID: 1343249491}
+  ground: {fileID: 1637577395}
+  gravity: {x: 0, y: -9.81, z: 0}
+  nowGravity: 0
+--- !u!4 &797582200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797582198}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,8 +663,8 @@ GameObject:
   - component: {fileID: 1343249496}
   - component: {fileID: 1343249495}
   - component: {fileID: 1343249494}
-  - component: {fileID: 1343249497}
   - component: {fileID: 1343249493}
+  - component: {fileID: 1343249497}
   - component: {fileID: 1343249492}
   m_Layer: 0
   m_Name: Ball
@@ -637,13 +686,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Tr: {fileID: 0}
-  m_StartSpeed: 80
+  m_StartSpeed: 0
   RPM: 5000
   m_ForceOfStartRotation: 0
   targetTr: {x: 0, y: 0.1, z: 1}
   forwardRotation: 0
   spinAngle: {x: 1, y: 0, z: 0}
   constNum: 5000
+  foreceDirection: {x: 0, y: 0, z: 0}
   count: 0
   angleV: {x: 0, y: 0, z: 0}
   isStart: 0
@@ -724,22 +774,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1343249497
-Rigidbody:
+--- !u!114 &1343249497
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343249491}
-  serializedVersion: 2
-  m_Mass: 0.14
-  m_Drag: 0.2
-  m_AngularDrag: 0.5
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 2
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f2d5621cde2aa4fbcba972f29584fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_mass: 0.014
+  Drag: 0
+  AngularDrag: 0
+  UseGravity: 0
+  angularVelocity: {x: 0, y: 0, z: 0}
+  maxAngularVelocity: 0
+  m_Tr: {fileID: 0}
 --- !u!1 &1407605895
 GameObject:
   m_ObjectHideFlags: 0

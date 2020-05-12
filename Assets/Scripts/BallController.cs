@@ -32,12 +32,14 @@ public class BallController : MonoBehaviour
 
     public Vector3 spinAngle;
 
-    private Rigidbody m_rb;
+    //private Rigidbody m_rb;
+    private MyPhysicsV2 m_rb;
     private float radius;
     private float magnusForce;
     private float volume;
     [SerializeField]
     private float constNum;
+    [SerializeField]
     private Vector3 foreceDirection;
     private float angleSpeed;
 
@@ -53,6 +55,8 @@ public class BallController : MonoBehaviour
 
     public void Init()
     {
+        m_rb.maxAngularVelocity = 1000000;
+
         angleSpeed = RPM / 60 * Mathf.PI * 2;
         if (forwardRotation)
         {
@@ -61,14 +65,18 @@ public class BallController : MonoBehaviour
 
         speed = m_StartSpeed * 10 / 36;
         m_rb.velocity = targetTr.normalized * speed;
+        if (angleSpeed > m_rb.maxAngularVelocity)
+        {
+            angleSpeed = m_rb.maxAngularVelocity;
+        }
         m_rb.angularVelocity = spinAngle * angleSpeed;
+        Debug.LogError(spinAngle * angleSpeed);
         // x 축회전은 상하
         // y 축회전은 전후
         // z 축회전은 좌우
 
         //m_rb.AddTorque(Vector3.left * m_StartSpin);
         //m_rb.AddForce(Vector3.forward * m_StartSpeed);
-        m_rb.maxAngularVelocity = 1000000;
 
         time = 0;
 
@@ -78,11 +86,11 @@ public class BallController : MonoBehaviour
     {
         m_Tr = GetComponent<Transform>();
 
-        if (GetComponent<Rigidbody>() == null)
+        if (GetComponent<MyPhysicsV2>() == null)
         {
-            this.gameObject.AddComponent<Rigidbody>();
+            this.gameObject.AddComponent<MyPhysicsV2>();
         }
-        m_rb = GetComponent<Rigidbody>();
+        m_rb = GetComponent<MyPhysicsV2>();
 
 
         radius = m_Tr.localScale.x * 0.5f;
@@ -91,6 +99,10 @@ public class BallController : MonoBehaviour
 
         originPos = this.gameObject.transform.position;
         originRot = this.gameObject.transform.rotation;
+
+
+        
+
     }
 
 
@@ -109,22 +121,24 @@ public class BallController : MonoBehaviour
 
         if (isStart)
         {
-        //angleSpeed = Mathf.Sqrt(Mathf.Pow(m_rb.angularVelocity.x, 2) + Mathf.Pow(m_rb.angularVelocity.y, 2) + Mathf.Pow(m_rb.angularVelocity.z, 2));
-        
-        foreceDirection = m_Tr.TransformVector(new Vector3(m_rb.angularVelocity.y, -m_rb.angularVelocity.x, m_rb.angularVelocity.z));
-        foreceDirection = foreceDirection.normalized;
-        angleSpeed = m_rb.angularVelocity.magnitude;
-        //Debug.Log(constNum);
-        //Debug.Log(angleSpeed);
-        //Debug.Log(volume);
-        //Debug.Log(radius);
-        magnusForce = 0.5f * constNum * angleSpeed * volume * radius;
-        magnusForce = Mathf.Abs(magnusForce);
-        
+            //angleSpeed = Mathf.Sqrt(Mathf.Pow(m_rb.angularVelocity.x, 2) + Mathf.Pow(m_rb.angularVelocity.y, 2) + Mathf.Pow(m_rb.angularVelocity.z, 2));
 
-        m_rb.AddForce(foreceDirection * magnusForce);
+            foreceDirection = m_Tr.TransformVector(new Vector3(m_rb.angularVelocity.y, -m_rb.angularVelocity.x, m_rb.angularVelocity.z));
+            foreceDirection = foreceDirection.normalized;
+            angleSpeed = m_rb.angularVelocity.magnitude;
+            //Debug.Log(constNum);
+            //Debug.Log(angleSpeed);
+            //Debug.Log(volume);
+            //Debug.Log(radius);
+            magnusForce = 0.5f * constNum * angleSpeed * volume * radius;
+            magnusForce = Mathf.Abs(magnusForce);
 
-        angleV = m_rb.angularVelocity;
+            Debug.LogError(foreceDirection);
+            m_rb.MyAddForce(foreceDirection * magnusForce);
+            Debug.LogError(foreceDirection.z * magnusForce);
+            //Debug.Log(spinAngle * angleSpeed);
+            angleV = m_rb.angularVelocity;
+            //Debug.Log(m_rb.angularVelocity);
         }
 
     }
